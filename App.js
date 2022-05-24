@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react"
 import { Camera } from "expo-camera"
 import * as MediaLibrary from "expo-media-library"
 import { shareAsync } from "expo-sharing"
-import { Icon } from "react-native-vector-icons/FontAwesome"
-//import { LinearGradient } from "expo"
+import Icon from '@expo/vector-icons/Ionicons';
+import { LinearGradient } from "expo-linear-gradient"
 
 export default function App() {
   let cameraRef = useRef()
@@ -72,43 +72,87 @@ export default function App() {
   }
 
   const switchCamera = () => {
-    if(cameraType === "back"){
-      setCameraType("front")
-    } else{
-      setCameraType("back")
-    }
+    cameraType === "back"
+      ? setCameraType("front")
+      : setCameraType("back")
+  }
+
+  const switchFlash = () => {
+    cameraFlash === "off"
+      ? setCameraFlash("torch")
+      : setCameraFlash("off")
   }
   return (
-    <Camera type={cameraType} style={styles.container} ref={cameraRef} flashMode={cameraFlash}>
+    //Top level container
+    <View style={styles.container}>
+      
+    <Camera type={cameraType} style={styles.camContainer} ref={cameraRef} ratio={'16:9'} flashMode={cameraFlash}>
 
+      {/* bottomBarContainer start */}
       <View style={styles.bottomBarContainer}>
-
         <View style={{ flex: 1 }}></View>
-
+        
         <View style={styles.takePicContainer}>
-          <TouchableOpacity onPress={takePic} style={styles.takePic} activeOpacity="0.5"/>
+          {/* change gradient: https://cssgradient.io/ */}
+          <LinearGradient colors={['#fd2df8', '#ffa823', '#6ee0cf']} style={styles.buttonGradient}>
+            <TouchableOpacity onPress={takePic} style={styles.takePic} activeOpacity="0.5"/>
+          </LinearGradient>
         </View>
 
         <View style={{ flex: 1 }}>
           <TouchableOpacity onPress={switchCamera} style={styles.changeCam} activeOpacity="0.5">
-            {/* <Icon name="camera" size={24} color={"white"} />  */}
-            <Text style={styles.iconText}>Flip</Text>
-          </TouchableOpacity>
-          
+            <View style={styles.changeCamIcon}>
+              <Icon name="camera-reverse" size={26} color={"white"} />
+            </View>  
+          </TouchableOpacity>  
         </View>
 
-        <View style={styles.topBarContainer}></View>
-        
+        <TouchableOpacity style={styles.mediaLibrary} activeOpacity="0.5">
+          <View style={styles.changeCamIcon}>
+            <Icon name="image" size={26} color={"white"} />
+          </View> 
+        </TouchableOpacity>    
       </View>
-      <StatusBar style="auto" />
+      {/* bottomBarContainer end */}
+
+      {/* topBarContainer start */}
+      <View style={styles.topBarContainer}>
+        <View style={{ flex: 1 }}></View>
+
+        <TouchableOpacity onPress={switchFlash} style={styles.flashContainer} activeOpacity="0.5">
+          <View>
+            { cameraFlash === "off"
+                ? <Icon name="md-flash-off" size={26} color={"white"} />
+                : <Icon name="md-flash" size={26} color={"white"} /> 
+            }     
+          </View> 
+        </TouchableOpacity> 
+
+        <TouchableOpacity activeOpacity="0.5">
+          <View style={styles.settingsContainer}>
+            <Icon name="settings" size={26} color={"white"} />
+          </View> 
+        </TouchableOpacity>
+
+      </View>
+      {/* topBarContainer end */}
+
+      <StatusBar style="light"/>
     </Camera>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, //make sure it occupies entire screen
+    borderTopWidth: 40,
+    borderColor: "black",
     backgroundColor: "#fff",
+    flex: 1,
+  },
+  camContainer: {
+    backgroundColor: "#fff",
+    flex: 1,//make sure it occupies entire screen, 
   },
   bottomBarContainer:{
     position: 'absolute',
@@ -117,18 +161,36 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     alignItems: "center",
   },
+  mediaLibrary: {
+    backgroundColor: "rgba(0,0,0,0.75)",
+    borderRadius: 30,
+    width: 45,
+    height: 45,
+    position: "absolute",
+    left: 25
+  },
+  mediaLibraryIcon:{
+    alignSelf:"center",
+  },
   takePicContainer: {
     flex: 1,
-    marginHorizontal: 65 //make sure components don't touch each other
+    marginHorizontal: 80, //make sure components don't touch each other
   },
-  takePic: {
-    borderWidth: 5,
-    backgroundColor: "#fff",
-    borderColor: "rgb(204,204,255)",
+  buttonGradient: {
     width: 80,
     height: 80, 
     borderRadius: 50,
     alignSelf: "center",
+  },
+  takePic: {
+    // borderWidth: 5,
+    backgroundColor: "#fff",
+    // borderColor: "rgb(204,204,255)",
+    width: 70,
+    height: 70, 
+    borderRadius: 50,
+    alignSelf: "center",
+    top: 5
   },
   changeCam: {
     backgroundColor: "rgba(0,0,0,0.75)",
@@ -136,12 +198,22 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
   },
-  iconText:{
-    color: "#fff",
-    fontSize: 18,
-    position: "absolute",
-    alignSelf: "center",
-    bottom: 15 
+  changeCamIcon:{
+    alignSelf:"center",
+    top: 8
+  },
+  topBarContainer: {
+    position: 'absolute',
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 15,
+    // backgroundColor:"pink"
+  },
+  flashContainer:{
+    marginRight: 280
+  },
+  settingsContainer:{
+    marginRight: 21,
   },
   preview: {
     alignSelf: "stretch",
