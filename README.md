@@ -34,7 +34,7 @@
     <br />
     <a href="https://drive.google.com/file/d/1ZMsRigPV32mgBLp0lobaNK7wbQ1XTC1C/view?usp=sharing">Project Poster</a>
     ·
-    <a href="https://drive.google.com/file/d/1g7YNs9d6Zz4upH68LwtoPgGl7BulZkdl/view?usp=sharing">Project Video(to be updated)</a>
+    <a href="https://drive.google.com/file/d/102iVaXShemI4al4qFINeme-2ZJOkqJyK/view?usp=sharing">Project Video</a>
   </p>
 </div>
 
@@ -57,6 +57,7 @@
         <li><a href="#colour-my-world-mode">Colour My World Mode</a></li>
         <li><a href="#photography-mode">Photography Mode</a></li>
       </ul>
+    <li><a href="#design-sketch">Design Sketch</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -100,21 +101,32 @@ _For more examples, please refer to the [Documentation](https://example.com)_ --
 <b>Create and save new varieties</b> through the use of a slider to adjust severity of colour deficiency.
 View the world through a different colour lens!
 
-ADD PIC
+<img src="https://drive.google.com/uc?export=view&id=1Y5SbP6MdXbsZVXFxmW9YmHrVy05tkZl3" alt="Logo" width="400" height="250">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Colour My World Mode
 Change all blue objects to yellow or all green objects to pink! <b>Do a virtual colour swap</b> of your surroundings through the live camera feed.
 
-ADD PIC
+<img src="https://drive.google.com/uc?export=view&id=1UzixFq3R-LYPKdGWrEPqrjrbe2Ch92s2" alt="Logo" width="400" height="250">
+
+(Blue swapped to yellow)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Photography Mode
-<b>Choose your desired highlight colour</b> which will make the remaining objects not of the selected colour black and white and objects of the highlight colour POP in the image.
+<b>Choose your desired highlight colour</b> which will make the remaining objects not of the selected colour black and white and objects of the highlight colour <b>POP</b> in the image.
 
-ADD PIC
+<img src="https://drive.google.com/uc?export=view&id=1fe3ilOpSGVBN78rR7FPA_B2IzChuj92k" alt="Logo" width="400" height="250">
+
+(Yellow selected as highlight colour)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Design Sketch
+
+<a href="https://drive.google.com/file/d/12rdy1eH5gDQTQCUgBxUfTwPzSl57pE_-/view?usp=sharing"><strong>Here</strong></a> is our app design mockup!
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTACT -->
