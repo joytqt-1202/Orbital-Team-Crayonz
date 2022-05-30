@@ -1,12 +1,14 @@
 import { StatusBar } from "expo-status-bar"
-import { Button, StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from "react-native"
+import { Button, StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity, AsyncStorage} from "react-native"
 import React from "react"
 import { useEffect, useRef, useState } from "react"
 import { Camera } from "expo-camera"
 import * as MediaLibrary from "expo-media-library"
 import { shareAsync } from "expo-sharing"
-import Icon from '@expo/vector-icons/Ionicons';
+import Icon from '@expo/vector-icons/Ionicons'
 import { LinearGradient } from "expo-linear-gradient"
+// import storage from "@react-native-firebase/storage"
+// import firebase from "./src/firebase"
 
 export default function App() {
   let cameraRef = useRef()
@@ -55,7 +57,15 @@ export default function App() {
         setPhoto(undefined)
       })
     }
+/* // Not working
+    let uploadImage = async () => {
+      const response = await fetch(photo.uri)
+      const blob = await response.blob()
 
+      const ref = firebase.storage().ref().child(new Date().toISOString)
+      return ref.put(blob)
+    }
+*/
     return (
       <SafeAreaView style={styles.container}>
         <Image
@@ -63,9 +73,11 @@ export default function App() {
           source={{ uri: "data:image/jpg;base64," + photo.base64 }}
         />
         <Button title="Share" onPress={sharePic} />
-        {hasMediaLibPermission ? (
-          <Button title="Save" onPress={savePic} />
-        ) : undefined}
+        
+        { hasMediaLibPermission ? (
+          <Button title="Save" onPress={uploadImage} />
+        ) : undefined }
+       
         <Button title="Discard" onPress={() => setPhoto(undefined)} />
       </SafeAreaView>
     )
@@ -82,6 +94,7 @@ export default function App() {
       ? setCameraFlash("torch")
       : setCameraFlash("off")
   }
+
   return (
     //Top level container
     <View style={styles.container}>
@@ -121,9 +134,9 @@ export default function App() {
 
         <TouchableOpacity onPress={switchFlash} style={styles.flashContainer} activeOpacity="0.5">
           <View>
-            { cameraFlash === "off"
-                ? <Icon name="md-flash-off" size={26} color={"white"} />
-                : <Icon name="md-flash" size={26} color={"white"} /> 
+            { cameraFlash === "torch"
+                ? <Icon name="md-flash" size={26} color={"white"} />
+                : <Icon name="md-flash-off" size={26} color={"white"} /> 
             }     
           </View> 
         </TouchableOpacity> 
