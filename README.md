@@ -73,7 +73,7 @@
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
 
 ### Motivation and Aim 
-Have you ever wondered what its like to <b>view the world through someone else's eyes?</b> With more than 350 million people being unable to tell apart certain colours or are less sensitive to some colours than others due to the cones in their retina being damaged, <b>colour deficiency is more common than we realise.</b> It affects even animals for that matter - cats and dogs are blind to the colour red and there is a fish called a Skate that sees everything only in black and white.
+Have you ever wondered what it's like to <b>view the world through someone else's eyes?</b> With more than 350 million people being unable to tell apart certain colours or are less sensitive to some colours than others due to the cones in their retina being damaged, <b>colour deficiency is more common than we realise.</b> It affects even animals for that matter - cats and dogs are blind to the colour red and there is a fish called a Skate that sees everything only in black and white.
 
 Through our mobile phone app, we hope to <b>raise awareness for colour deficiencient people by simulating what they might see</b>. Additionally, we wish to unleash the user’s inner child to play with colours through the <i>Colour My World</i> and <i>Photography</i> modes and watch their world virtually transform at the tip of their fingers.
 
