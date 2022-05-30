@@ -1,14 +1,35 @@
 import { StatusBar } from "expo-status-bar"
-import { Button, StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity, AsyncStorage} from "react-native"
+import { Button, StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity, AsyncStorage, Platform} from "react-native"
 import React from "react"
 import { useEffect, useRef, useState } from "react"
-import { Camera } from "expo-camera"
+import { Camera, getMicrophonePermissionsAsync } from "expo-camera"
 import * as MediaLibrary from "expo-media-library"
 import { shareAsync } from "expo-sharing"
 import Icon from '@expo/vector-icons/Ionicons'
 import { LinearGradient } from "expo-linear-gradient"
 // import storage from "@react-native-firebase/storage"
 // import firebase from "./src/firebase"
+// import { launchImageLibrary } from 'react-native-image-picker'
+// import { CLIENT_API_KEY } from "@env"
+
+/*
+const SERVER_URL = 'https://api.imgbb.com/1/upload'
+const createFormData = (photo, body = {}) => {
+  const data = new FormData()
+  
+  data.append('photo', {
+    name: photo.fileName,
+    type: photo.type,
+    uri: Platform.OS === 'ios' ? photo.uri.replace('file://', '') : photo.uri
+  })
+
+  Object.keys(body).forEach((key) => {
+    data.append(key, body[key])
+  })
+
+  return data
+}
+*/
 
 export default function App() {
   let cameraRef = useRef()
@@ -17,6 +38,16 @@ export default function App() {
   const [photo, setPhoto] = useState() //if val is undefined means theres no photo
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
   const [cameraFlash, setCameraFlash] = useState(Camera.Constants.FlashMode.off)
+
+  /* // Not working. - Unhandled Promise Rejection
+  const handleChoosePhoto = () => {
+    launchImageLibrary({ noData: true }, (response) => {
+      if (response) {
+        setPhoto(response)
+      }
+    })
+  }
+  */
 
   useEffect(() => {
     (async () => {
@@ -66,16 +97,32 @@ export default function App() {
       return ref.put(blob)
     }
 */
+/* // Not really working because of server linking
+  const handleUploadPhoto = () => {
+    fetch(`${SERVER_URL}/api/upload`, {
+      method: 'POST',
+      image: createFormData(photo, {userId: '123 '}),
+      key: CLIENT_API_KEY
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log('response', response)
+      })
+      .catch((e) => {
+        console.log('error', e)
+      })
+  }
+*/
     return (
       <SafeAreaView style={styles.container}>
         <Image
           style={styles.preview}
-          source={{ uri: "data:image/jpg;base64," + photo.base64 }}
+          source={{ uri: /*"data:image/jpg;base64," + photo.base64*/ photo.uri }}
         />
         <Button title="Share" onPress={sharePic} />
         
         { hasMediaLibPermission ? (
-          <Button title="Save" onPress={uploadImage} />
+          <Button title="Save" onPress={savePic} />
         ) : undefined }
        
         <Button title="Discard" onPress={() => setPhoto(undefined)} />
@@ -120,7 +167,7 @@ export default function App() {
           </TouchableOpacity>  
         </View>
 
-        <TouchableOpacity style={styles.mediaLibrary} activeOpacity="0.5">
+        <TouchableOpacity /*</View>onPress={handleChoosePhoto}*/ style={styles.mediaLibrary} activeOpacity="0.5">
           <View style={styles.changeCamIcon}>
             <Icon name="image" size={26} color={"white"} />
           </View> 
