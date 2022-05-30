@@ -92,9 +92,9 @@ Through our mobile phone app, we hope to <b>raise awareness for colour deficienc
 <!-- USAGE EXAMPLES -->
 ## Features and Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://example.com)_ -->
 ### View My World Mode
 <b>Select an option</b> from existing variations of colour deficiency.
 <b>Create and save new varieties</b> through the use of a slider to adjust severity of colour deficiency.
