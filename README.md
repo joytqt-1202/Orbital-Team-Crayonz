@@ -58,6 +58,7 @@
         <li><a href="#photography-mode">Photography Mode</a></li>
       </ul>
     <li><a href="#design-sketch">Design Sketch</a></li>
+    <li><a href="#try-out-our-application">Try Out Our Application</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -128,6 +129,27 @@ Change all blue objects to yellow or all green objects to pink! <b>Do a virtual 
 <a href="https://drive.google.com/file/d/12rdy1eH5gDQTQCUgBxUfTwPzSl57pE_-/view?usp=sharing"><strong>Here</strong></a> is our app design mockup!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+## Try Out Our Application!
+<em> we will make it easier to test in the future! </em>
+
+<h4> Run the following in your Windows terminal </h4>
+<h4> Clone our git hub repo: </h4>
+<p> git init </p>
+<p> git clone https://github.com/joytqt-1202/Orbital-Team-Crayonz.git </p>
+
+<h4> Download all relevant packages: </h4>
+<p> npm i </p>
+
+<h4> Start up our application: </h4>
+<p> expo start </p>
+
+<h4> Scan QR code to test our application: </h4>
+<p> Download Expo App from the App Store/Play Store </p>
+<ul>
+    <li> iPhone: use camera to scan QR code </li>
+    <li> Android: use Expo App camera to scan QR code </li>
+</ul>
 
 <!-- CONTACT -->
 ## Contact
