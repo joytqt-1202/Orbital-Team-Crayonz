@@ -18,6 +18,7 @@ export default function VMWScreen({navigation}) {
   const [photo, setPhoto] = useState() //if val is undefined means theres no photo
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
   const [cameraFlash, setCameraFlash] = useState(Camera.Constants.FlashMode.off)
+  const [text, setText] = useState(0)
 
   useEffect(() => {
     (async () => {
@@ -85,7 +86,14 @@ export default function VMWScreen({navigation}) {
       ? setCameraFlash("torch")
       : setCameraFlash("off")
   }
+
+  // const showText = () => {
+  //   cameraFlash === "off"
+  //     ? setCameraFlash("torch")
+  //     : setCameraFlash("off")
+  // }
   return (
+  <View style={styles.preview}>
    <CamButtons 
       takePicFcn={takePic}
       switchCamFcn={switchCamera}
@@ -94,8 +102,24 @@ export default function VMWScreen({navigation}) {
       cameraFlash={cameraFlash}
       cameraType={cameraType}
       navigation={navigation}
-   />
+   /> 
+    
+   <View style={styles.leftBarContainer}>
+      <TouchableOpacity >
+        <Text style={styles.Text}>R</Text>
+      </TouchableOpacity>
+      <TouchableOpacity >
+        <Text style={styles.Text}>G</Text>
+      </TouchableOpacity>
+      <TouchableOpacity >
+        <Text style={styles.Text}>B</Text>
+      </TouchableOpacity>
+      <TouchableOpacity >
+        <Text style={styles.Text}>C</Text>
+      </TouchableOpacity>
+    </View>
 
    
+   </View>
   )
 }

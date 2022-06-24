@@ -7,7 +7,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import styles from "./style"
 
 
-export default function CamButtons({ navigation, takePicFcn, switchCamFcn, switchFlashFcn, camRef, cameraFlash, cameraType }) {
+export default function CamButtons({ navigation, takePicFcn, switchCamFcn, switchFlashFcn, camRef, cameraFlash, cameraType, camReady, openGallery }) {
   // const navigate = useNavigation()
   // let cameraRef = useRef()
   // const [hasCameraPermission, setHasCameraPermission] = useState(false) //initial value is undefined
@@ -75,7 +75,8 @@ export default function CamButtons({ navigation, takePicFcn, switchCamFcn, switc
     //Top level container
     <View style={styles.container}>
       
-    <Camera type={cameraType} style={styles.camContainer} ref={camRef} ratio={'16:9'} flashMode={cameraFlash}>
+    <Camera type={cameraType} style={styles.camContainer} ref={camRef} ratio={'16:9'} flashMode={cameraFlash}
+    onCameraReady={camReady}>
 
       {/* bottomBarContainer start */}
       <View style={styles.bottomBarContainer}>
@@ -96,7 +97,7 @@ export default function CamButtons({ navigation, takePicFcn, switchCamFcn, switc
           </TouchableOpacity>  
         </View>
 
-        <TouchableOpacity style={styles.mediaLibrary} activeOpacity="0.5">
+        <TouchableOpacity onPress={openGallery} style={styles.mediaLibrary} activeOpacity="0.5">
           <View style={styles.changeCamIcon}>
             <Icon name="image" size={26} color={"white"} />
           </View> 
@@ -134,7 +135,7 @@ export default function CamButtons({ navigation, takePicFcn, switchCamFcn, switc
 
       <StatusBar style="light"/>
     </Camera>
-    </View>
+  </View>
   )
 }
 

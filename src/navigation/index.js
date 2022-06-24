@@ -37,19 +37,7 @@ export default function RootNavigation() {
       </Drawer.Navigator>
     </NavigationContainer>
     
-
-    // <NavigationContainer>
-    //     <Stack.Navigator initialRouteName='CamMain'>
-    //         <Stack.Screen name='CamMain' component={CamMain} options={{ headerShown:false }}/>
-    //         <Stack.Screen name='Settings' component={Settings} />
-    //     </Stack.Navigator>
-    // </NavigationContainer>
-    //     <Drawer.Navigator initialRouteName='CamMain'>
-    //         <Drawer.Screen name='CamMain' component={CamMain} options={{ headerShown:false }}/>
-    //         <Drawer.Screen name='VMWScreen' component={VMWScreen} />
-    //         <Drawer.Screen name='CMWScreen' component={CMWScreen} options={{ headerShown:false }}/>
-    //         <Drawer.Screen name='PScreen' component={PScreen} />
-    //     </Drawer.Navigator>
+       
     
 
 
