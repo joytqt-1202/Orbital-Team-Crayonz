@@ -1,10 +1,12 @@
 {
   "expo": {
-    "name": "camera2",
+    "name": "Colourz",
     "slug": "camera2",
+    "privacy": "unlisted",
+    "description": "Try out our colour blindess simulating app!",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/colourz.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
