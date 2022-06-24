@@ -76,7 +76,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ### Motivation and Aim 
 Have you ever wondered what it's like to <b>view the world through someone else's eyes?</b> With more than 350 million people being unable to tell apart certain colours or are less sensitive to some colours than others due to the cones in their retina being damaged, <b>colour deficiency is more common than we realise.</b> It affects even animals for that matter - cats and dogs are blind to the colour red and there is a fish called a Skate that sees everything only in black and white.
 
-Through our mobile phone app, we hope to <b>raise awareness for colour deficiencient people by simulating what they might see</b>. Additionally, we wish to unleash the user’s inner child to play with colours through the <i>Colour My World</i> and <i>Photography</i> modes and watch their world virtually transform at the tip of their fingers.
+Through our mobile phone app, we hope to <b>raise awareness for colour deficient people by simulating what they might see</b>. As some additional features, we wish to unleash the user’s inner child to play with colours through the <i>Colour My World</i> and <i>Photography</i> modes and watch their world virtually transform at the tip of their fingers.
 
 
 
@@ -97,8 +97,10 @@ Through our mobile phone app, we hope to <b>raise awareness for colour deficienc
 <!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_ -->
-### View My World Mode
-<b>Select an option</b> from existing variations of colour deficiency.
+### View My World Mode [Main Feature]
+<em>This mode is created to allow users without colour deficiencies to simulate colour deficiencies.</em>
+
+<b>Select an option</b> from <a href="https://www.colourblindawareness.org/colour-blindness/types-of-colour-blindness/" target="_blank" rel="noopener noreferrer"> existing variations of colour deficiency</a>.
 <b>Create and save new varieties</b> through the use of a slider to adjust severity of colour deficiency.
 View the world through a different colour lens!
 
@@ -106,8 +108,10 @@ View the world through a different colour lens!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Colour My World Mode
-Change all blue objects to yellow or all green objects to pink! <b>Do a virtual colour swap</b> of your surroundings through the live camera feed.
+### Colour My World Mode [Additional Feature #1]
+<em>Change all blue objects to yellow or all green objects to pink! </em>
+
+<b>Do a virtual colour swap</b> of your surroundings through the live camera feed.
 
 <img src="https://drive.google.com/uc?export=view&id=1UzixFq3R-LYPKdGWrEPqrjrbe2Ch92s2" alt="Logo" width="400" height="250">
 
@@ -115,7 +119,7 @@ Change all blue objects to yellow or all green objects to pink! <b>Do a virtual 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Photography Mode
+### Photography Mode [Additional Feature #2]
 <b>Choose your desired highlight colour</b> which will make the remaining objects not of the selected colour black and white and objects of the highlight colour <b>POP</b> in the image.
 
 <img src="https://drive.google.com/uc?export=view&id=1fe3ilOpSGVBN78rR7FPA_B2IzChuj92k" alt="Logo" width="400" height="250">
