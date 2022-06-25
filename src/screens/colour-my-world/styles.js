@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
     // borderTopWidth: 40,
     // borderColor: "black",
     backgroundColor: "#fff",
@@ -11,13 +10,13 @@ const styles = StyleSheet.create({
     flex: 1,  
   },
   leftBarContainer:{
-    position: "absolute",
+    position: 'absolute',
     // backgroundColor: "#78646A",
     backgroundColor: "rgba(222,49,99,0.5)",
     flex: 1,
     width:50,
     height: 230,
-    marginTop: 280,
+    marginTop: 290,
     marginLeft: 15,
     alignItems: "center",
     borderRadius:30,
@@ -37,13 +36,12 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     alignItems: "center",
     // backgroundColor: "white",
-    backgroundColor: "rgb(222,49,99)",
-    // backgroundColor: "rgba(0,0,0,0.5)",
+    // backgroundColor: "rgba(222,49,99,0.5)",
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
   bottomBar:{
-    // alignIte: "stretch",
-    marginHorizontal: 48,
-    // justifyContent:"space-evenly",
+    alignItems: "center",
+    marginHorizontal: 32,
     marginBottom: 10,
     // textColor:"white",
   },

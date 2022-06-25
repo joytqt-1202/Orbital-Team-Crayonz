@@ -24,8 +24,6 @@ export default function CamMainScreen({navigation}) {
   const [uploading, setUploading] = useState(false)
   const [transferred, setTransferred] = useState(0)
   
-  Camera.
-
   useEffect(() => {
     (async () => {
       const cameraPermission = await Camera.requestCameraPermissionsAsync() //to use await we need async fcn
@@ -36,8 +34,6 @@ export default function CamMainScreen({navigation}) {
       setHasGalleryPermission(galleryPermission.status === "granted")
     })()//() returns a promise
   }, []) 
-
-  // 
 
   if (hasCameraPermission === undefined) {
     return <Text>Requesting Permissions</Text>

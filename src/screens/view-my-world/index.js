@@ -4,6 +4,7 @@ import React from "react"
 import { useEffect, useRef, useState } from "react"
 import { Camera } from "expo-camera"
 import * as MediaLibrary from "expo-media-library"
+import * as ImagePicker from "expo-image-picker"
 import { shareAsync } from "expo-sharing"
 import Icon from "@expo/vector-icons/Ionicons"
 import { LinearGradient } from "expo-linear-gradient" 
@@ -15,6 +16,7 @@ export default function VMWScreen({navigation}) {
   let cameraRef = useRef()
   const [hasCameraPermission, setHasCameraPermission] = useState(false) //initial value is undefined
   const [hasMediaLibPermission, setHasMediaLibPermission] = useState(false)
+  const [hasGalleryPermission, setHasGalleryPermission] = useState()
   const [photo, setPhoto] = useState() //if val is undefined means theres no photo
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
   const [cameraFlash, setCameraFlash] = useState(Camera.Constants.FlashMode.off)
@@ -24,8 +26,10 @@ export default function VMWScreen({navigation}) {
     (async () => {
       const cameraPermission = await Camera.requestCameraPermissionsAsync() //to use await we need async fcn
       const mediaLibPermission = await MediaLibrary.requestPermissionsAsync()
+      const galleryPermission = await ImagePicker.requestMediaLibraryPermissionsAsync()
       setHasCameraPermission(cameraPermission.status === "granted")
       setHasMediaLibPermission(mediaLibPermission.status === "granted")
+      setHasGalleryPermission(galleryPermission.status === "granted")
     })()//() returns a promise
   }, [])
 
@@ -61,18 +65,83 @@ export default function VMWScreen({navigation}) {
     }
 
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <Image
           style={styles.preview}
           source={{ uri: "data:image/jpg;base64," + photo.base64 }}
         />
-        <Button title="Share" onPress={sharePic} />
+
+        {/* bottomBarContainer start */}
+      <View style={styles.bottomBarContainer}>
+        <View style={{ flex: 1 }}></View>
+        
+          <TouchableOpacity onPress={sharePic} style={styles.changeCam}>
+            <View style={styles.bottomBar}>
+              <Icon name="share-outline" size={30} color={"white"} />
+              {/* <Text>Share</Text> */}
+            </View>  
+          </TouchableOpacity>  
+        
+          <TouchableOpacity onPress={savePic} style={styles.mediaLibrary}>
+            <View style={styles.bottomBar}>
+              <Icon name="save-outline" size={30} color={"white"} />
+              {/* <Text>Save</Text> */}
+            </View> 
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setPhoto(undefined)} style={styles.mediaLibrary}>
+            <View style={styles.bottomBar}>
+              <Icon name="ios-trash" size={30} color={"white"} />
+              {/* <Text>Discard</Text> */}
+            </View> 
+          </TouchableOpacity>
+
+          </View>
+
+          <View style={styles.leftBarContainer}>
+          <TouchableOpacity >
+            <Text style={styles.Text}>R</Text>
+          </TouchableOpacity>
+          <TouchableOpacity >
+            <Text style={styles.Text}>G</Text>
+          </TouchableOpacity>
+          <TouchableOpacity >
+            <Text style={styles.Text}>B</Text>
+          </TouchableOpacity>
+          <TouchableOpacity >
+            <Text style={styles.Text}>C</Text>
+          </TouchableOpacity>
+        </View>
+      {/* bottomBarContainer end */}
+        
+        {/* <Button title="Share" onPress={sharePic} />
         {hasMediaLibPermission ? (
           <Button title="Save" onPress={savePic} />
         ) : undefined}
-        <Button title="Discard" onPress={() => setPhoto(undefined)} />
-      </SafeAreaView>
+        <Button title="Discard" onPress={() => setPhoto(undefined)} /> */}
+        <StatusBar style="light"/>
+      </View>
+      
     )
+  }
+
+  const pickImage = async() => {
+    let result= await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images
+    })
+
+    console.log(result)
+    if(!result.cancelled){
+      // const storage = getStorage() //create an instance of storage which can add and access images from
+      // const reference = ref(storage, result)  //create image inside storage
+
+      //conver image to array of bytes
+     
+    //   uploadBytes(reference, bytes).then((snapshot) => {
+    //     console.log('Uploaded blob or file!')
+    //   });
+
+    }
   }
 
   const switchCamera = () => {
@@ -102,22 +171,8 @@ export default function VMWScreen({navigation}) {
       cameraFlash={cameraFlash}
       cameraType={cameraType}
       navigation={navigation}
-   /> 
-    
-   <View style={styles.leftBarContainer}>
-      <TouchableOpacity >
-        <Text style={styles.Text}>R</Text>
-      </TouchableOpacity>
-      <TouchableOpacity >
-        <Text style={styles.Text}>G</Text>
-      </TouchableOpacity>
-      <TouchableOpacity >
-        <Text style={styles.Text}>B</Text>
-      </TouchableOpacity>
-      <TouchableOpacity >
-        <Text style={styles.Text}>C</Text>
-      </TouchableOpacity>
-    </View>
+      openGallery={pickImage}
+   />
 
    
    </View>
