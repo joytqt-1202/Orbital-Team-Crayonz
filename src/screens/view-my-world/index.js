@@ -48,8 +48,23 @@ export default function VMWScreen({navigation}) {
       exif: false,
     }
 
-    let newPhoto = await cameraRef.current.takePictureAsync(options)
+    let newPhoto = await cameraRef.current.takePictureAsync(options) 
     setPhoto(newPhoto)
+  
+  }
+
+  let pickImage = async () => {
+    let options = {
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+      base64: true,
+    }
+    let result = await ImagePicker.launchImageLibraryAsync(options)
+
+    console.log(result) 
+    if(!result.cancelled){
+      setPhoto(result)
+    }
   }
 
   if (photo) {
@@ -69,6 +84,7 @@ export default function VMWScreen({navigation}) {
         <Image
           style={styles.preview}
           source={{ uri: "data:image/jpg;base64," + photo.base64 }}
+
         />
 
         {/* bottomBarContainer start */}
@@ -123,25 +139,6 @@ export default function VMWScreen({navigation}) {
       </View>
       
     )
-  }
-
-  const pickImage = async() => {
-    let result= await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images
-    })
-
-    console.log(result)
-    if(!result.cancelled){
-      // const storage = getStorage() //create an instance of storage which can add and access images from
-      // const reference = ref(storage, result)  //create image inside storage
-
-      //conver image to array of bytes
-     
-    //   uploadBytes(reference, bytes).then((snapshot) => {
-    //     console.log('Uploaded blob or file!')
-    //   });
-
-    }
   }
 
   const switchCamera = () => {
