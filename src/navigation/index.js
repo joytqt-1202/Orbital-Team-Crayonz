@@ -8,6 +8,7 @@ import CamScreen from '../screens/main-camera'
 import CMWScreen from '../screens/colour-my-world'
 import VMWScreen from '../screens/view-my-world'
 import PScreen from '../screens/photography'
+import LoginScreen from '../screens/login'
 
 
 const Stack= createNativeStackNavigator()
@@ -17,7 +18,8 @@ const SettingsStack = () => {
   return (
    
     <Stack.Navigator>
-      <Stack.Screen name='Main' component={CamScreen} options={{ headerShown:false }}/>
+      <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown:false }}/>
+      <Stack.Screen name='HomeScreen' component={VMWScreen} options={{ headerShown:false }}/>
       <Stack.Screen name='Settings' component={Settings} />
     </Stack.Navigator>
   )
@@ -27,12 +29,12 @@ const SettingsStack = () => {
 export default function RootNavigation() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName='CamScreen'>
-        <Drawer.Screen name='CamScreen' component={SettingsStack} options={{ headerShown:false }}/>
-        <Drawer.Screen name='VMWScreen' component={VMWScreen} options={{
+      <Drawer.Navigator initialRouteName='View My World'>
+        <Drawer.Screen name='CamScreen' component={CamScreen} options={{ headerShown:false }}/>
+        <Drawer.Screen name='View My World' component={SettingsStack} options={{
           headerShown:false
         }}/>
-        <Drawer.Screen name='CMWScreen' component={CMWScreen} options={{ headerShown:true }}/>
+        <Drawer.Screen name='CMWScreen' component={CMWScreen} />
         <Drawer.Screen name='PScreen' component={PScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
