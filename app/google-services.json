@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "500864092618",
+    "project_id": "colourzapp-1d5b1",
+    "storage_bucket": "colourzapp-1d5b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500864092618:android:e11bd5cb64f601daeda733",
+        "android_client_info": {
+          "package_name": "com.example.ColourzApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500864092618-7hcursbcorl45fibc8r14lde2e2hhh1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRDh4NOVRgVeLjK4OUz_ubiAXEXOq7Do0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500864092618-7hcursbcorl45fibc8r14lde2e2hhh1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
