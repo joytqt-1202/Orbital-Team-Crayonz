@@ -1,6 +1,7 @@
 package com.example.ColourzApp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -25,6 +26,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.ColourzApp.databinding.ActivityMainBinding;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -34,22 +37,27 @@ import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends DrawerActivity {
+
+    ActivityMainBinding activityMainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(R.layout.activity_main);
+        setContentView(activityMainBinding.getRoot());
         init();
     }
 
     private static final int REQUEST_PERMISSIONS = 1234;
     private static final String[] PERMISSIONS = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
     };
 
-    private static final int PERMISSIONS_COUNT = 2;
+    private static final int PERMISSIONS_COUNT = 3;
 
     @SuppressLint("NewApi")
     private boolean notPermissions(){
@@ -90,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.editScreen).setVisibility(View.GONE);
             findViewById(R.id.welcomeScreen).setVisibility(View.VISIBLE);
             editMode = false;
+        } else if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -132,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if(takePictureIntent.resolveActivity(getPackageManager()) != null){
+                if(takePictureIntent.resolveActivity(getPackageManager()) == null){
                     //create file to store photo that was just taken
                     final File photoFile = createImageFile();
                     imageUri = Uri.fromFile(photoFile);
@@ -285,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 bmpOptions.inJustDecodeBounds = false;
                 width = bmpOptions.outWidth;
                 height = bmpOptions.outHeight;
-                int resizeScale = 2;
+                int resizeScale = 1;
                 if(width > MAX_PIXEL_COUNT){
                     resizeScale = width/MAX_PIXEL_COUNT;
                 } else if(height > MAX_PIXEL_COUNT){
