@@ -10,4 +10,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="beige">#F4F2F2</color>
+    <color name="bnwTint">#6C6968</color>
+    <color name="rgBlindTint">#CDCD56</color>
+    <color name="rWeakTint">#D06E58</color>
+    <color name="gWeakTint">#79C26C</color>
+    <color name="bBlindTint">#65C0CE</color>
+    <color name="bWeakTint">#6A7DD3</color>
 </resources>
