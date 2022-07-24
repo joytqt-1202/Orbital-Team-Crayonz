@@ -169,15 +169,11 @@ public class MainActivity extends DrawerActivity {
         final Button gWeakButton = findViewById(R.id.greenWeak);
         final Button blueBlindButton = findViewById(R.id.blueBlind);
 
-        bnwButton.setBackgroundColor(Color.BLUE);
-        rgBlindButton.setBackgroundColor(Color.BLUE);
-        gWeakButton.setBackgroundColor(Color.BLUE);
-        blueBlindButton.setBackgroundColor(Color.BLUE);
-
         applyFilterOnClick(bnwButton);
         applyFilterOnClick(rgBlindButton);
         applyFilterOnClick(gWeakButton);
         applyFilterOnClick(blueBlindButton);
+
 //        final Button blackAndWhiteButton = findViewById(R.id.blackAndWhite);
 //        blackAndWhiteButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -388,19 +384,18 @@ public class MainActivity extends DrawerActivity {
 
                     // if the filter of the button pressed was previously applied...
                     if (isCurrentFilter) {
+                        // change the colour of the button back to original
                         button.setBackgroundColor(originalTint);
 
                     } else {
                     // if the filter of the button pressed was NOT previously applied...
-                    // set all buttons to blue, while setting currently pressed button as green
+                    // set all buttons to blue
                         findViewById(R.id.blackAndWhite).setBackgroundColor(getResources().getColor(R.color.bnwTint));
                         findViewById(R.id.redGreenBlind).setBackgroundColor(getResources().getColor(R.color.rgBlindTint));
                         findViewById(R.id.greenWeak).setBackgroundColor(getResources().getColor(R.color.gWeakTint));
                         findViewById(R.id.blueBlind).setBackgroundColor(getResources().getColor(R.color.bBlindTint));
 
                         applyFilter(button);
-                        button.setBackgroundColor(getResources().getColor(R.color.purple));
-
                     }
                 } else {
                     applyFilter(button);
@@ -415,6 +410,8 @@ public class MainActivity extends DrawerActivity {
         originalPic.getPixels(pixels, 0, width, 0, 0, width, height);
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
         imageView.setImageBitmap(originalPic);
+
+//        we dont want to work with threads because of the differing speeds that the jobs complete
 
 //        Thread resetImageThread = new Thread(new Runnable(){
 //            @Override
@@ -445,7 +442,7 @@ public class MainActivity extends DrawerActivity {
             rgColourBlindness(pixels, width, height);
         } else if (button == findViewById(R.id.greenWeak)) {
             gWeak(pixels, width, height);
-        } else { // if (button == findViewById(R.id.blueBlind)) - not fully configured
+        } else { // if (button == findViewById(R.id.blueBlind)) - not fully configured for all filters
             bColourBlindness(pixels, width, height);
         }
 
@@ -478,7 +475,7 @@ public class MainActivity extends DrawerActivity {
 //        }.start();
 
         filtered = categoriseButton(button);
-        button.setBackgroundColor(Color.GREEN);
+        button.setBackgroundColor(getResources().getColor(R.color.purple));
     }
 
     private int categoriseButton(Button button) {
