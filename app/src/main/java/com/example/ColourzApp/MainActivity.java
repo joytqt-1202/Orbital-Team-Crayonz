@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,7 +74,11 @@ public class MainActivity extends DrawerActivity {
         System.loadLibrary("colourzApp");
     }
 
-    private static native void blackAndWhite(int[] pixels, int width, int height);
+//    private static native void blackAndWhite(int[] pixels, int width, int height);
+    private static native void colourBlind(int[] pixels, int width, int height);
+    private static native void rgColourBlindness(int[] pixels, int width, int height);
+    private static native void gWeak(int[] pixels, int width, int height);
+    private static native void bColourBlindness(int[] pixels, int width, int height);
 
     @Override
     protected void onResume(){
@@ -158,25 +163,40 @@ public class MainActivity extends DrawerActivity {
             }
         });
 
-        final Button blackAndWhiteButton = findViewById(R.id.blackAndWhite);
-        blackAndWhiteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new Thread() {
-                    public void run() {
-                        blackAndWhite(pixels, width, height);
-                        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                imageView.setImageBitmap(bitmap);
-                            }
-                        });
-                    }
-                }.start();
-            }
-        });
+        final Button bnwButton = findViewById(R.id.blackAndWhite);
+        final Button rgBlindButton = findViewById(R.id.redGreenBlind);
+        final Button gWeakButton = findViewById(R.id.greenWeak);
+        final Button blueBlindButton = findViewById(R.id.blueBlind);
+
+        bnwButton.setBackgroundColor(Color.BLUE);
+        rgBlindButton.setBackgroundColor(Color.BLUE);
+        gWeakButton.setBackgroundColor(Color.BLUE);
+        blueBlindButton.setBackgroundColor(Color.BLUE);
+
+        applyFilterOnClick(bnwButton);
+        applyFilterOnClick(rgBlindButton);
+        applyFilterOnClick(gWeakButton);
+        applyFilterOnClick(blueBlindButton);
+//        final Button blackAndWhiteButton = findViewById(R.id.blackAndWhite);
+//        blackAndWhiteButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                new Thread() {
+//                    public void run() {
+//                        blackAndWhite(pixels, width, height);
+//                        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+//
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                imageView.setImageBitmap(bitmap);
+//                            }
+//                        });
+//                    }
+//                }.start();
+//            }
+//        });
 
         final ImageView saveImageButton = findViewById(R.id.saveImage);
         saveImageButton.setOnClickListener(new View.OnClickListener() {
@@ -241,6 +261,7 @@ public class MainActivity extends DrawerActivity {
 
     private boolean editMode = false;
     private Bitmap bitmap;
+    private Bitmap originalPic;
     private int width = 0;
     private int height = 0;
     private static final int MAX_PIXEL_COUNT = 2048;
@@ -328,10 +349,152 @@ public class MainActivity extends DrawerActivity {
                 pixelCount = width * height;
                 pixels = new int[pixelCount];
                 bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
+
+                originalPic = bitmap.copy(bitmap.getConfig(), true);
             }
         }.start();
 
         dialog.cancel();
+    }
+
+    private int filtered = 0;
+    // 0 = not filtered
+    // 1 = colour blind - black and white
+    // 2 = rg blind
+    // 3 = green weak
+    // 4 = blue blind
+    // 5?
+
+    private int originalTint;
+    private void applyFilterOnClick(Button button) {
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                int buttonBackground = getFilterOriginalTint(categoriseButton(button));
+//                int buttonBackground = 0;
+
+                // if statement is just to pass java compiler check
+                // we know that it will always pass this check
+                // since we set the colour at the start of the code
+//                if (button.getBackground() instanceof ColorDrawable) {
+//                }
+
+                boolean isCurrentFilter = (filtered == categoriseButton(button));
+
+                // if filtered
+                if (filtered != 0) {
+                    resetImage();
+
+                    // if the filter of the button pressed was previously applied...
+                    if (isCurrentFilter) {
+                        button.setBackgroundColor(originalTint);
+
+                    } else {
+                    // if the filter of the button pressed was NOT previously applied...
+                    // set all buttons to blue, while setting currently pressed button as green
+                        findViewById(R.id.blackAndWhite).setBackgroundColor(getResources().getColor(R.color.bnwTint));
+                        findViewById(R.id.redGreenBlind).setBackgroundColor(getResources().getColor(R.color.rgBlindTint));
+                        findViewById(R.id.greenWeak).setBackgroundColor(getResources().getColor(R.color.gWeakTint));
+                        findViewById(R.id.blueBlind).setBackgroundColor(getResources().getColor(R.color.bBlindTint));
+
+                        applyFilter(button);
+                        button.setBackgroundColor(getResources().getColor(R.color.purple));
+
+                    }
+                } else {
+                    applyFilter(button);
+                }
+            }
+        });
+    }
+
+
+
+    private void resetImage() {
+        originalPic.getPixels(pixels, 0, width, 0, 0, width, height);
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        imageView.setImageBitmap(originalPic);
+
+//        Thread resetImageThread = new Thread(new Runnable(){
+//            @Override
+//            public void run() {
+//                originalPic.getPixels(pixels, 0, width, 0, 0, width, height);
+//                bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+//                imageView.setImageBitmap(originalPic);
+//
+//            }
+//        });
+//
+//        resetImageThread.start();
+//        try {
+//            resetImageThread.join();
+//        } catch (InterruptedException e) {
+//            Toast.makeText( MainActivity.this, "Unable to load filter. Please try again.",
+//                    Toast.LENGTH_SHORT).show();
+//        }
+        filtered = 0;
+    }
+
+    private void applyFilter(Button button) {
+
+        // apply the appropriate C native function according to the button pressed
+        if(button == findViewById(R.id.blackAndWhite)) {
+            colourBlind(pixels, width, height);
+        } else if (button == findViewById(R.id.redGreenBlind)) {
+            rgColourBlindness(pixels, width, height);
+        } else if (button == findViewById(R.id.greenWeak)) {
+            gWeak(pixels, width, height);
+        } else { // if (button == findViewById(R.id.blueBlind)) - not fully configured
+            bColourBlindness(pixels, width, height);
+        }
+
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        imageView.setImageBitmap(bitmap);
+
+//        new Thread() {
+//            public void run() {
+//
+//                // apply the appropriate C native function according to the button pressed
+//                if(button == findViewById(R.id.colourBlindButton)) {
+//                    colourBlind(pixels, width, height);
+//                } else if (button == findViewById(R.id.rBlindButton)) {
+//                    rColourBlindness(pixels, width, height);
+//                } else if (button == findViewById(R.id.gBlindButton)) {
+//                    gColourBlindness(pixels, width, height);
+//                } else { // if (button == findViewById(R.id.bBlindButton))
+//                    bColourBlindness(pixels, width, height);
+//                }
+//
+//                bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+//
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        imageView.setImageBitmap(bitmap);
+//                    }
+//                });
+//            }
+//        }.start();
+
+        filtered = categoriseButton(button);
+        button.setBackgroundColor(Color.GREEN);
+    }
+
+    private int categoriseButton(Button button) {
+        if (button == findViewById(R.id.blackAndWhite)) {
+            originalTint = getResources().getColor(R.color.bnwTint);
+            return 1;
+        } else if (button == findViewById(R.id.redGreenBlind)) {
+            originalTint = getResources().getColor(R.color.rgBlindTint);
+            return 2;
+        } else if (button == findViewById(R.id.greenWeak)) {
+            originalTint = getResources().getColor(R.color.gWeakTint);
+            return 3;
+        } else {
+            originalTint = getResources().getColor(R.color.bBlindTint);
+            return 4;
+        }
     }
 
 }
