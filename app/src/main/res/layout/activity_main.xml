@@ -14,13 +14,13 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <ImageView
-            android:id="@+id/naviDrawer"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_menu" />
+<!--        <ImageView-->
+<!--            android:id="@+id/naviDrawer"-->
+<!--            android:layout_width="42dp"-->
+<!--            android:layout_height="42dp"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:src="@drawable/ic_menu" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="invisible">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -74,8 +74,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:text="Back"
                 android:textColor="@color/dark_purple"
-                android:textStyle="bold"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/saveImage"
@@ -95,8 +95,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:text="Save"
                 android:textColor="@color/dark_purple"
-                android:textStyle="bold"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>
@@ -118,13 +118,13 @@
                 android:layout_height="60dp"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/normalVision"
-                    android:layout_width="160dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_weight="1"
-                    android:text="Original" />
+<!--                <Button-->
+<!--                    android:id="@+id/normalVision"-->
+<!--                    android:layout_width="160dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginHorizontal="5dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Original" />-->
 
                 <Button
                     android:id="@+id/blackAndWhite"
