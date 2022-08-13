@@ -47,11 +47,6 @@ public class DrawerActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 break;
 
-            case R.id.liveFilters:
-                startActivity(new Intent(this, LiveCameraActivity.class));
-                overridePendingTransition(0, 0);
-                break;
-
             case R.id.info:
                 startActivity(new Intent(this, AboutActivity.class));
                 overridePendingTransition(0, 0);

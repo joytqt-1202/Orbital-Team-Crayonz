@@ -6,9 +6,9 @@
             android:icon="@drawable/ic_photo_filter"
             android:title="Photo Filters" />
 
-        <item android:id="@+id/liveFilters"
-            android:icon="@drawable/ic_camera"
-            android:title="Live Camera Filters" />
+<!--        <item android:id="@+id/liveFilters"-->
+<!--            android:icon="@drawable/ic_camera"-->
+<!--            android:title="Live Camera Filters" />-->
 
         <item android:id="@+id/info"
             android:icon="@drawable/ic_info"
