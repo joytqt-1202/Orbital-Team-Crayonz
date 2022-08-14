@@ -166,12 +166,12 @@ public class MainActivity extends DrawerActivity {
 
         final Button bnwButton = findViewById(R.id.blackAndWhite);
         final Button rgBlindButton = findViewById(R.id.redGreenBlind);
-        final Button gWeakButton = findViewById(R.id.greenWeak);
+//        final Button gWeakButton = findViewById(R.id.greenWeak);
         final Button blueBlindButton = findViewById(R.id.blueBlind);
 
         applyFilterOnClick(bnwButton);
         applyFilterOnClick(rgBlindButton);
-        applyFilterOnClick(gWeakButton);
+//        applyFilterOnClick(gWeakButton);
         applyFilterOnClick(blueBlindButton);
 
 //        final Button blackAndWhiteButton = findViewById(R.id.blackAndWhite);
@@ -392,7 +392,7 @@ public class MainActivity extends DrawerActivity {
                     // set all buttons to blue
                         findViewById(R.id.blackAndWhite).setBackgroundColor(getResources().getColor(R.color.bnwTint));
                         findViewById(R.id.redGreenBlind).setBackgroundColor(getResources().getColor(R.color.rgBlindTint));
-                        findViewById(R.id.greenWeak).setBackgroundColor(getResources().getColor(R.color.gWeakTint));
+//                        findViewById(R.id.greenWeak).setBackgroundColor(getResources().getColor(R.color.gWeakTint));
                         findViewById(R.id.blueBlind).setBackgroundColor(getResources().getColor(R.color.bBlindTint));
 
                         applyFilter(button);
@@ -440,8 +440,8 @@ public class MainActivity extends DrawerActivity {
             colourBlind(pixels, width, height);
         } else if (button == findViewById(R.id.redGreenBlind)) {
             rgColourBlindness(pixels, width, height);
-        } else if (button == findViewById(R.id.greenWeak)) {
-            gWeak(pixels, width, height);
+//        } else if (button == findViewById(R.id.greenWeak)) {
+//            gWeak(pixels, width, height);
         } else { // if (button == findViewById(R.id.blueBlind)) - not fully configured for all filters
             bColourBlindness(pixels, width, height);
         }
@@ -485,9 +485,9 @@ public class MainActivity extends DrawerActivity {
         } else if (button == findViewById(R.id.redGreenBlind)) {
             originalTint = getResources().getColor(R.color.rgBlindTint);
             return 2;
-        } else if (button == findViewById(R.id.greenWeak)) {
-            originalTint = getResources().getColor(R.color.gWeakTint);
-            return 3;
+//        } else if (button == findViewById(R.id.greenWeak)) {
+//            originalTint = getResources().getColor(R.color.gWeakTint);
+//            return 3;
         } else {
             originalTint = getResources().getColor(R.color.bBlindTint);
             return 4;

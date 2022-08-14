@@ -144,23 +144,23 @@
                     android:backgroundTint="#CDCD56"
                     android:text="Red Green Blind" />
 
-                <Button
+                <!--<Button
                     android:id="@+id/redWeak"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="1"
                     android:backgroundTint="#D06E5B"
-                    android:text="Red Weak" />
+                    android:text="Red Weak" /> -->
 
-                <Button
+                <!--<Button
                     android:id="@+id/greenWeak"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="1"
                     android:backgroundTint="#79C26C"
-                    android:text="Green Weak" />
+                    android:text="Green Weak" /> -->
 
                 <Button
                     android:id="@+id/blueBlind"
@@ -171,14 +171,14 @@
                     android:backgroundTint="#65C0CE"
                     android:text="Blue Blind" />
 
-                <Button
+                <!--<Button
                     android:id="@+id/blueWeak"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="1"
                     android:backgroundTint="#6A7DD3"
-                    android:text="Blue Weak" />
+                    android:text="Blue Weak" /> -->
 
             </LinearLayout>
 
