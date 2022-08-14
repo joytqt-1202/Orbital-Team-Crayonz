@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/joyta/AndroidStudioProjects/AndroidStudio/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
+        <entry key="..\:/Users/joyta/AndroidStudioProjects/AndroidStudio/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.111077880859375" />
         <entry key="app/src/main/res/drawable/ic_arrow_back.xml" value="0.142" />
         <entry key="app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.142" />
