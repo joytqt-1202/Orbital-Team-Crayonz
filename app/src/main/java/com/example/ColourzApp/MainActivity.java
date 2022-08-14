@@ -15,6 +15,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -112,6 +114,7 @@ public class MainActivity extends DrawerActivity {
 
     private static final int REQUEST_PICK_IMAGE = 12345;
     private ImageView imageView;
+//    private ImageView image = findViewById(R.id.imageView);
 
 //    Only initialise if user has granted permission
     private void init(){
@@ -147,7 +150,7 @@ public class MainActivity extends DrawerActivity {
             @Override
             public void onClick(View view) {
                 final Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if(takePictureIntent.resolveActivity(getPackageManager()) == null){
+//                if(takePictureIntent.resolveActivity(getPackageManager()) == null){
                     //create file to store photo that was just taken
                     final File photoFile = createImageFile();
                     imageUri = Uri.fromFile(photoFile);
@@ -156,10 +159,10 @@ public class MainActivity extends DrawerActivity {
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
-                } else {
-                    Toast.makeText(MainActivity.this, "Your Camera is not compatible with Colourz",
-                            Toast.LENGTH_SHORT).show();
-                }
+//                } else {
+//                    Toast.makeText(MainActivity.this, "Your Camera is not compatible with Colourz",
+//                            Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 
@@ -241,6 +244,15 @@ public class MainActivity extends DrawerActivity {
             }
         });
 
+        //share image implementation
+//        final ImageView shareButton = findViewById(R.id.shareImage);
+//        shareButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                shareImage();
+//            }
+//        });
+
     }
     private static final int REQUEST_IMAGE_CAPTURE = 1012;
 
@@ -251,6 +263,7 @@ public class MainActivity extends DrawerActivity {
     private File createImageFile(){
         final String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         final String imageFileName = "/JPEG_" + timeStamp + ".jpg";
+        //declaring the directory where the images will be stored
         final File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         return new File(storageDir + imageFileName);
     }
@@ -277,7 +290,7 @@ public class MainActivity extends DrawerActivity {
                 final SharedPreferences p = getSharedPreferences(appID, 0);
                 final String path = p.getString("path", "");
                 if(path.length() < 1){
-                    recreate();
+                    recreate(); //relaunch the app
                     return;
                 }
                 imageUri = Uri.parse("file://" + path);
@@ -493,5 +506,32 @@ public class MainActivity extends DrawerActivity {
             return 4;
         }
     }
+
+    private Bitmap bitmap2;
+    private BitmapDrawable drawable;
+
+//    private void shareImage(){
+//        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+//        StrictMode.setVmPolicy(builder.build());
+//        drawable = (BitmapDrawable) image.getDrawable();
+//        bitmap2 = drawable.getBitmap();
+//        final String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        final String imageFileName = "/JPEG_" + timeStamp + ".jpg";
+//        File file = new File(getExternalCacheDir()+"/"+ imageFileName);
+//        Intent intent;
+//        try {
+//            FileOutputStream outputStream = new FileOutputStream(file);
+//            bitmap2.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
+//            outputStream.flush();
+//            outputStream.close();
+//            intent = new Intent(Intent.ACTION_SEND);
+//            intent.setType("image/");
+//            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        } catch (Exception e){
+//            throw new RuntimeException(e);
+//        }
+//        startActivity(Intent.createChooser(intent, "Share Image Via: "));
+//    }
 
 }

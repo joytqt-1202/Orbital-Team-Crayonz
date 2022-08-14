@@ -7,14 +7,13 @@ import android.os.Bundle;
 import com.example.ColourzApp.databinding.ActivityLiveCameraBinding;
 import com.example.ColourzApp.databinding.ActivityMainBinding;
 
-public class LiveCameraActivity extends DrawerActivity {
+public class LiveCameraActivity extends AppCompatActivity{
 
-    ActivityLiveCameraBinding  activityLiveCameraBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityLiveCameraBinding = ActivityLiveCameraBinding.inflate(getLayoutInflater());
-        setContentView(activityLiveCameraBinding.getRoot());
+//        setContentView();
     }
+
 }

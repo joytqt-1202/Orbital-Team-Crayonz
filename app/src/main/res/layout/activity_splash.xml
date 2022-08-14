@@ -38,8 +38,8 @@
 
     <TextView
         android:id="@+id/textSplashScreen2"
-        android:layout_width="347dp"
-        android:layout_height="53dp"
+        android:layout_width="348dp"
+        android:layout_height="65dp"
         android:text="Colourblindess Simulating and Visual Aid App"
         android:textAlignment="center"
         android:textColor="@color/dark_purple"
